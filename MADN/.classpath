@@ -13,5 +13,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/Users/sevenvista/Documents/MADN/MADN/itextpdf-5.5.6.jar" sourcepath="/Users/sevenvista/Documents/MADN/MADN/itextpdf-5.5.6-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/Users/sevenvista/Documents/MADN/MADN/itextpdf-5.5.6-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
