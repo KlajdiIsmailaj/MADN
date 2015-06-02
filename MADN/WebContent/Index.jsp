@@ -16,9 +16,9 @@
 
 <div id="form2">
  
-  <input id="spielStarten" type = "submit" value = "Spiel starten">
+  <input id="spielStarten" type = "submit" value = "Spiel Starten">
   
-<input id="spielLaden" type = "submit" value = "Spiel laden">
+<input id="spielLaden" type = "submit" value = "Spiel Laden">
 
  </div>
 
