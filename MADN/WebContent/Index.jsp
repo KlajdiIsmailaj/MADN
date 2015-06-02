@@ -14,6 +14,8 @@
 <form action="Index" method="post">
 <br><br>
 
+hi
+
 <div id="form2">
  
   <input id="spielStarten" type = "submit" value = "Spiel Starten">
