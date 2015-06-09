@@ -1,5 +1,7 @@
 package testmadn;
 
+import java.util.ArrayList;
+
 
 /**
  * Klasse der vorhanden Methoden die ein Spieler nutzen kann
@@ -27,6 +29,15 @@ public interface iBediener {
 	String ladeFarbe(int i);
 	int updatePosLaden(int spieler, int figurID);
 	String ladeName(int i);
+	Integer getAnzahlWeb();
+	void setAnzahlWeb(Integer anzahöWeb);
+	String[] spielerName();
+	ArrayList<String> nameSpieler();
+	String nameWeb1();
+	String nameWeb2();
+	String nameWeb3();
+	String nameWeb4();
+	
 	
 }
 

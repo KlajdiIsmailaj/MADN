@@ -5,24 +5,38 @@
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Spieler 2</title>
+<title>Spieler</title>
+
+<script type="text/javascript">
+
+
+function validateForm() {
+    var x = document.forms["myForm"]["name"].value;
+    if (x == null || x == "") {
+        alert("Bitte Namen eingeben !");
+        return false;
+    }
+}
+
+</script>
+
 </head>
 <body>
+<br>
+ <h1>Spieler Daten eingeben</h1>
 
- <h1>Spieler 2</h1>
-
- <form action="Spieler2" method="post">
+ <form name="myForm" action="Spieler" method="post" onsubmit="return validateForm()" >
 
    <div id="form">
   <label id="labels1">Bitte gib deinen Namen ein:</label> 
-  <input type="text">
+  <input id="name" name="name" type="text">
   
    <br>
    <br>
    
    <label id="labels1">Wähle deine Farbe aus:</label> 
-  <select id ="farbe">
-<option value="Rot">Rot</option>
+  <select id ="farbe" name="farbe">
+	<option value="Rot">Rot</option>
 	<option value="Blau">Blau</option>
 	<option value="Grün">Grün</option>
 	<option value="Gelb">Gelb</option>
@@ -31,16 +45,18 @@
    <br>
    
    <label id="labels1">Wähle deinen Spieltyp: </label> 
-   <select id ="spielerart">
+   <select id ="spielerart" name ="spielerart">
 	<option value="Mensch">Mensch</option>
-	<option value="Aggressiv">Ki-Aggressiv</option>
-	<option value="Defensiv">Ki-Defensiv</option>
+	<option value="KI Aggressiv">Ki-Aggressiv</option>
+	<option value="KI Defensiv">Ki-Defensiv</option>
 </select>
 
 <br>
 <br>
 
-  <input id="spielerAnlegen" type="submit" value="Spieler anlegen">
+<input id="spielerAnlegen" name="spielerAnlegen" type="submit" value="Spieler anlegen" >
+
+
   
    </div>
     </form>

@@ -8,23 +8,21 @@
 <title>MADN</title>
 </head>
 <body>
+
+
 <br><br>
 <div id="header">
 </div>
-<form action="Index" method="post">
-<br><br>
+
 
 
 <div id="form2">
- 
-  <input id="spielStarten" type = "submit" value = "Spiel Starten">
-  
+<form action="Index" method="post"><input id="spielStarten" type = "submit" value = "Spiel Starten"></form>
 <input id="spielLaden" type = "submit" value = "Spiel Laden">
+</div>
 
- </div>
 
 
-</form>
 
 </body>
 </html>

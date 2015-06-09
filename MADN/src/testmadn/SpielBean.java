@@ -19,8 +19,96 @@ public class SpielBean implements iBediener, Serializable {
 	private Spielbrett brett;
 	private int spielerAnzahl;
 	private Integer wuerfelZahl;
-	private DatenzugriffCSV csv ;
+	private DatenzugriffCSV csv;
+	private Integer anzahlWeb=null;
+	private ArrayList<String>name1=new ArrayList<String>();
+	private String[]name=new String[2];
+	
 
+	@Override
+	public Integer getAnzahlWeb() {
+		return anzahlWeb;
+	}
+	@Override
+	public void setAnzahlWeb(Integer anzahlWeb) {
+		this.anzahlWeb = anzahlWeb;
+	}
+	
+	@Override
+	public String[] spielerName(){
+		
+//		if(spielerlist.size()>0){
+//			for(Spieler sp:spielerlist){
+//				if(sp!=null){
+//					name.add(sp.getName());
+//					
+//				}
+//				
+//			}
+//		}
+		
+		if(spielerlist.get(0)!=null){
+			name[0]=spielerlist.get(0).getName();
+		}
+		if(spielerlist.get(1)!=null){
+			name[1]=spielerlist.get(1).getName();
+		}
+		
+		return name;
+	}
+	@Override
+	public ArrayList<String> nameSpieler(){
+		String c=null;
+//		System.out.println(spielerName().length);
+		for(int i=0;i<spielerName().length;i++){
+			c=spielerName()[i];
+//			System.out.println(c);
+//			break;
+			name1.add(c);
+			
+		}
+		
+		
+		
+		return name1; 
+	}
+	
+	@Override
+	public String nameWeb1(){
+		String name=null;
+		if(spielerlist.get(0)!=null){
+			name=spielerlist.get(0).getName();
+		}
+		
+		return name;
+	}
+	@Override
+	public String nameWeb2(){
+		String name=null;
+		if(spielerlist.get(1)!=null){
+			name=spielerlist.get(1).getName();
+		}
+		
+		return name;
+	}
+	@Override
+	public String nameWeb3(){
+		String name=null;
+		if(spielerlist.get(1)!=null){
+			name=spielerlist.get(1).getName();
+		}
+		
+		return name;
+	}
+	@Override
+	public String nameWeb4(){
+		String name=null;
+		if(spielerlist.get(1)!=null){
+			name=spielerlist.get(1).getName();
+		}
+		
+		return name;
+	}
 
 	/**
 	 * der Konstruktor der Klasse Spiel es wird ein neues Spielbrett erzeugt es
@@ -143,7 +231,6 @@ public class SpielBean implements iBediener, Serializable {
 	@Override
 	public void newSpieler(String name,String Farbe,String KI){
 		Spieler x =new Spieler(name,this.bestimmeFarbe(Farbe),this.bestimmeKI(KI)) ;
-		
 		spielerlist.add(x); // add(0<--index vom spieler,spieler);
 		setSpielerAmZug(x);
 		spielerAnzahl++;

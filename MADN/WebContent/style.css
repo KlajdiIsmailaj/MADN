@@ -44,7 +44,10 @@ input#spielStarten{
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
 	color: #2E2E1F;
-	margin-top:10px;
+	margin-top:5%;
+	float:left;
+
+	
 	
 	
 }
@@ -77,6 +80,11 @@ input#spielLaden{
 	text-shadow:0px 1px 0px #ffffff;
 	color: #2E2E1F;
 	width:107px;
+	margin-top:5%;
+	float:right;
+	
+	
+	
 	
 }
 
@@ -85,7 +93,7 @@ div#form2{
 	box-shadow: 0px 0px 15px #000000;
 	background: rgba(0, 0, 0, 0.7);
 	text-align:center;
-	width: 250px;
+	width: 230px;
 	height:50px;
 	padding: 15px 15px 15px 15px;
 	margin: 0 auto;
@@ -171,6 +179,7 @@ div#form{
 	width: 400px;
 	padding: 15px 15px 15px 15px;
 	margin: 0 auto;
+	
 }
 
 input[type=text]
@@ -262,17 +271,7 @@ input#spielerAnlegen{
 	color: #2E2E1F;
 }
 
-table{
-	border:solid;
-	border-color:transparent;
-	width:525px;
-	height:525px;
-	font-family:Arial;
-}
 
-div#brett{
-	background:url(Bilder/brett.png) no-repeat center center ;
-}
 
 textarea#logging{
 	width:525px;
@@ -284,6 +283,7 @@ textarea#logging{
 }
 
 div#log{
+	
 	border-radius: 10px;
 	box-shadow: 0px 0px 15px #000000;
 	background: rgba(0, 0, 0, 0.7);
@@ -583,15 +583,27 @@ input#beenden:hover{
 	box-shadow:0 0 18px rgba(255,255,255,.5);
 }
 
+div#SpielerNamen{
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px #000000;
+	background: rgba(0, 0, 0, 0.7);
+	text-align:center;
+	width: 150px;
+	padding: 15px 15px 15px 15px;
+	margin-left:80%;
+	margin-top:9%;
+	position:absolute;
+}
+
 div#steuerung{
 	border-radius: 10px;
 	box-shadow: 0px 0px 15px #000000;
 	background: rgba(0, 0, 0, 0.7);
 	text-align:center;
-	width: 120px;
+	width: 150px;
 	padding: 15px 15px 15px 15px;
 	margin-left:80%;
-	margin-top:9%;
+	margin-top:25%;
 	position:absolute;
 }
 
@@ -601,6 +613,60 @@ div#dice{
 	margin-top:9%;
 }
 
+#weiterButtonWait{
+	text-align: center;
+	-moz-box-shadow:inset -12px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset -12px 1px 0px 0px #ffffff;
+	box-shadow:inset -12px 1px 0px 0px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+	background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+	background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+	background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+	background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+	background-color:#ffffff;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Trebuchet MS;
+	font-size:13px;
+	font-weight:bold;
+	padding:4px 13px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+	color: #2E2E1F;
+	
+}
+
+
+div#formWait{
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px #000000;
+	background: rgba(0, 0, 0, 0.7);
+	text-align:center;
+	width: 400px;
+	padding: 15px 15px 15px 15px;
+	margin: 0 auto;
+}
+
+
+table{
+	
+	width:525px;
+	height:525px;
+	background:url(Bilder/brett8.png) no-repeat center center ;
+	
+}
+
+td{
+	
+	height:50px;
+}
 
 
 
