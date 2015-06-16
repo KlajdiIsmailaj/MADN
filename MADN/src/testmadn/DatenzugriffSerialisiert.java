@@ -2,8 +2,7 @@ package testmadn;
 
 import java.io.*;
 
-import testmadn.SpielBean;
-
+import com.itextpdf.text.*;
 
 /**
  * Klasse DatenzugriffSerialisiert
@@ -12,11 +11,20 @@ import testmadn.SpielBean;
  */
 public class DatenzugriffSerialisiert implements iDatenzugriff,Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	public static ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+	
+	
 /**
  * methode speichern aus dem Interface iDatenzugriff wird implementiert
  */
 	@Override
 	public void speichern(String s,Object sp){
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
+		
 		String sav = s;
 		sav.concat(".ser");
 		try{
@@ -29,6 +37,9 @@ public class DatenzugriffSerialisiert implements iDatenzugriff,Serializable{
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
+		
+		System.out.flush();
+		System.setOut(old);
 	}
 /**
  * methode laden aus dem Interface iDatenzugriff wird implementiert

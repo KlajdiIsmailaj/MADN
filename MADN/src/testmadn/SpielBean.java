@@ -1,5 +1,7 @@
 package testmadn;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.*;
 
@@ -21,8 +23,10 @@ public class SpielBean implements iBediener, Serializable {
 	private Integer wuerfelZahl;
 	private DatenzugriffCSV csv;
 	private Integer anzahlWeb=null;
-	private ArrayList<String>name1=new ArrayList<String>();
-	private String[]name=new String[2];
+
+	private String farbe;
+	private String[]figurWebId2=null;
+	public static ByteArrayOutputStream baos = new ByteArrayOutputStream();
 	
 
 	@Override
@@ -35,43 +39,15 @@ public class SpielBean implements iBediener, Serializable {
 	}
 	
 	@Override
-	public String[] spielerName(){
-		
-//		if(spielerlist.size()>0){
-//			for(Spieler sp:spielerlist){
-//				if(sp!=null){
-//					name.add(sp.getName());
-//					
-//				}
-//				
-//			}
-//		}
-		
-		if(spielerlist.get(0)!=null){
-			name[0]=spielerlist.get(0).getName();
-		}
-		if(spielerlist.get(1)!=null){
-			name[1]=spielerlist.get(1).getName();
-		}
-		
-		return name;
+	public void farbeSession(String farbeSess){
+		farbe=farbeSess;
 	}
+	
 	@Override
-	public ArrayList<String> nameSpieler(){
-		String c=null;
-//		System.out.println(spielerName().length);
-		for(int i=0;i<spielerName().length;i++){
-			c=spielerName()[i];
-//			System.out.println(c);
-//			break;
-			name1.add(c);
-			
-		}
-		
-		
-		
-		return name1; 
+	public String gibFarbeSession(){
+		return farbe;
 	}
+	
 	
 	@Override
 	public String nameWeb1(){
@@ -196,6 +172,36 @@ public class SpielBean implements iBediener, Serializable {
 	}
 	
 	@Override
+	public String ermittleSpielerAmZugFarbe(){
+		String i="";
+		if(spielerAmZug.getFarbe()==FarbEnum.ROT){
+			i="Rot";
+		}
+		else if(spielerAmZug.getFarbe()==FarbEnum.BLAU){
+			i="Blau";
+		}
+		else if(spielerAmZug.getFarbe()==FarbEnum.GRUEN){
+			i="Grün";
+		}
+		else if(spielerAmZug.getFarbe()==FarbEnum.GELB){
+			i="Gelb";
+		}
+		return i;
+	}
+	
+	@Override
+	public boolean ermittleKiWeb(){
+		
+		
+		if(spielerAmZug.getKi()==null){
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+	@Override
 	public int gibFigurKi(){
 		int i=0;
 		if(spielerAmZug.getFarbe()==FarbEnum.ROT){
@@ -230,11 +236,20 @@ public class SpielBean implements iBediener, Serializable {
 	
 	@Override
 	public void newSpieler(String name,String Farbe,String KI){
+		
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
+		
+		
 		Spieler x =new Spieler(name,this.bestimmeFarbe(Farbe),this.bestimmeKI(KI)) ;
 		spielerlist.add(x); // add(0<--index vom spieler,spieler);
 		setSpielerAmZug(x);
 		spielerAnzahl++;
 		System.out.println("Teilnehmer: --> "+x.getName());
+		
+		System.out.flush();
+		System.setOut(old);
 	}
 	
 	@Override
@@ -325,6 +340,474 @@ public class SpielBean implements iBediener, Serializable {
 		
 	}
 	
+	@Override
+	public boolean farbeWebRot(){
+		FarbEnum rot=FarbEnum.ROT;
+		for(Spieler spielerRot:spielerlist){
+			if(spielerRot.getFarbe()==rot){
+				return true;
+			}
+		}
+		return false;
+	}
+	@Override
+	public boolean farbeWebBlau(){
+		FarbEnum blau=FarbEnum.BLAU;
+		for(Spieler spielerBlau:spielerlist){
+			if(spielerBlau.getFarbe()==blau){
+				return true;
+			}
+		}
+		return false;
+	}
+	@Override
+	public boolean farbeWebGelb(){
+		FarbEnum gelb=FarbEnum.GELB;
+		for(Spieler spielerGelb:spielerlist){
+			if(spielerGelb.getFarbe()==gelb){
+				return true;
+			}
+		}
+		return false;
+	}
+	@Override
+	public boolean farbeWebGruen(){
+		FarbEnum gruen=FarbEnum.GRUEN;
+		for(Spieler spielerGruen:spielerlist){
+			if(spielerGruen.getFarbe()==gruen){
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	
+	@Override
+	public String[] gibFigurWebId(){
+		
+		figurWebId2=new String [122];
+		
+		//-----------Weg-------------
+		for(Spielfeld f:brett.getWeg()){
+			
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="rot0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="rot1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="rot2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="rot3";
+			}
+			
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="blau0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="blau1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="blau2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="blau3";
+			}
+			
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="gruen0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="gruen1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="gruen2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="gruen3";
+			}
+			
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="gelb0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="gelb1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="gelb2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="gelb3";
+			}
+			
+			
+		}
+		
+		//-----------Startfelder------------
+		for(Spielfeld f:brett.getStartRot()){
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="rot0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="rot1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="rot2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="rot3";
+			}
+		}
+		
+		for(Spielfeld f:brett.getStartBlau()){
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="blau0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="blau1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="blau2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="blau3";
+			}
+		}
+		
+		for(Spielfeld f:brett.getStartGruen()){
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="gruen0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="gruen1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="gruen2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="gruen3";
+			}
+		}
+		
+		for(Spielfeld f:brett.getStartGelb()){
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="gelb0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="gelb1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="gelb2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="gelb3";
+			}
+		}
+		
+		//---------EndFelder-------------
+		
+		for(Spielfeld f:brett.getEndRot()){
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="rot0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="rot1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="rot2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.ROT&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="rot3";
+			}
+		}
+		
+		for(Spielfeld f:brett.getEndBlau()){
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="blau0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="blau1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="blau2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.BLAU&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="blau3";
+			}
+		}
+		
+		for(Spielfeld f:brett.getEndGruen()){
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="gruen0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="gruen1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="gruen2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GRUEN&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="gruen3";
+			}
+		}
+		
+		for(Spielfeld f:brett.getEndGelb()){
+			if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==0){
+				figurWebId2[convertPos(f)]="gelb0";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==1){
+				figurWebId2[convertPos(f)]="gelb1";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==2){
+				figurWebId2[convertPos(f)]="gelb2";
+			}else if(f.getFigur()!=null&&f.getFigur().getFarbe()==FarbEnum.GELB&&f.getFigur().getId()==3){
+				figurWebId2[convertPos(f)]="gelb3";
+			}
+		}
+		
+		return figurWebId2;
+	}
+	
+	
+	public int convertPos(Spielfeld s){
+		int i=0;
+		String pos;
+		FarbEnum f;
+		pos=s.getId();
+		f=s.getFarbe();
+		
+		switch(pos){
+		case "1":
+			i=45;
+			return i;
+		case "2":
+			i=46;
+			return i;
+		case "3":
+			i=47;
+			return i;
+		case "4":
+			i=48;
+			return i;
+		case "5":
+			i=49;
+			return i;
+		case "6":
+			i=38;
+			return i;
+		case "7":
+			i=27;
+			return i;
+		case "8":
+			i=16;
+			return i;
+		case "9":
+			i=5;
+			return i;
+		case "10":
+			i=6;
+			return i;
+		case "11":
+			i=7;
+			return i;
+		case "12":
+			i=18;
+			return i;
+		case "13":
+			i=29;
+			return i;
+		case "14":
+			i=40;
+			return i;
+		case "15":
+			i=51;
+			return i;
+		case "16":
+			i=52;
+			return i;
+		case "17":
+			i=53;
+			return i;
+		case "18":
+			i=54;
+			return i;
+		case "19":
+			i=55;
+			return i;
+		case "20":
+			i=66;
+			return i;
+		case "21":
+			i=77;
+			return i;
+		case "22":
+			i=76;
+			return i;
+		case "23":
+			i=75;
+			return i;
+		case "24":
+			i=74;
+			return i;
+		case "25":
+			i=73;
+			return i;
+		case "26":
+			i=84;
+			return i;
+		case "27":
+			i=95;
+			return i;
+		case "28":
+			i=106;
+			return i;
+		case "29":
+			i=117;
+			return i;
+		case "30":
+			i=116;
+			return i;
+		case "31":
+			i=115;
+			return i;
+		case "32":
+			i=104;
+			return i;
+		case "33":
+			i=93;
+			return i;
+		case "34":
+			i=82;
+			return i;
+		case "35":
+			i=71;
+			return i;
+		case "36":
+			i=70;
+			return i;
+		case "37":
+			i=69;
+			return i;
+		case "38":
+			i=68;
+			return i;
+		case "39":
+			i=67;
+			return i;
+		case "40":
+			i=56;
+			return i;
+		case "S1":
+			if(f==FarbEnum.ROT){
+				i=2;
+				return i;
+			}
+			else if(f==FarbEnum.BLAU){
+				i=11;
+				return i;
+			}
+			else if(f==FarbEnum.GRUEN){
+				i=110;
+				return i;
+			}
+			else if(f==FarbEnum.GELB){
+				i=101;
+				return i;
+			}
+			
+		case "S2":
+			if(f==FarbEnum.ROT){
+				i=1;
+				return i;
+			}
+			else if(f==FarbEnum.BLAU){
+				i=10;
+				return i;
+			}
+			else if(f==FarbEnum.GRUEN){
+				i=109;
+				return i;
+			}
+			else if(f==FarbEnum.GELB){
+				i=100;
+				return i;
+			}
+		case "S3":
+			if(f==FarbEnum.ROT){
+				i=12;
+				return i;
+			}
+			else if(f==FarbEnum.BLAU){
+				i=21;
+				return i;
+			}
+			else if(f==FarbEnum.GRUEN){
+				i=120;
+				return i;
+			}
+			else if(f==FarbEnum.GELB){
+				i=111;
+				return i;
+			}
+		case "S4":
+			if(f==FarbEnum.ROT){
+				i=13;
+				return i;
+			}
+			else if(f==FarbEnum.BLAU){
+				i=22;
+				return i;
+			}
+			else if(f==FarbEnum.GRUEN){
+				i=121;
+				return i;
+			}
+			else if(f==FarbEnum.GELB){
+				i=112;
+				return i;
+			}
+		case "E1":
+			if(f==FarbEnum.ROT){
+				i=57;
+				return i;
+			}
+			else if(f==FarbEnum.BLAU){
+				i=17;
+				return i;
+			}
+			else if(f==FarbEnum.GRUEN){
+				i=65;
+				return i;
+			}
+			else if(f==FarbEnum.GELB){
+				i=105;
+				return i;
+			}
+		case "E2":
+			if(f==FarbEnum.ROT){
+				i=58;
+				return i;
+			}
+			else if(f==FarbEnum.BLAU){
+				i=28;
+				return i;
+			}
+			else if(f==FarbEnum.GRUEN){
+				i=64;
+				return i;
+			}
+			else if(f==FarbEnum.GELB){
+				i=94;
+				return i;
+			}
+		case "E3":
+			if(f==FarbEnum.ROT){
+				i=59;
+				return i;
+			}
+			else if(f==FarbEnum.BLAU){
+				i=39;
+				return i;
+			}
+			else if(f==FarbEnum.GRUEN){
+				i=63;
+				return i;
+			}
+			else if(f==FarbEnum.GELB){
+				i=83;
+				return i;
+			}
+		case "E4":
+			if(f==FarbEnum.ROT){
+				i=60;
+				return i;
+			}
+			else if(f==FarbEnum.BLAU){
+				i=50;
+				return i;
+			}
+			else if(f==FarbEnum.GRUEN){
+				i=62;
+				return i;
+			}
+			else if(f==FarbEnum.GELB){
+				i=72;
+				return i;
+			}
+		}
+		return i;
+	}
+	
+	
+	
 	public FarbEnum bestimmeFarbe(String farbe) {
 		FarbEnum wert = null;
 		switch(farbe){
@@ -362,6 +845,10 @@ public class SpielBean implements iBediener, Serializable {
 	
 	@Override
 	public void spielStart(){
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
+		
 		if ((spielerlist.size()==0)){
 			throw new RuntimeException ("Es nimmt noch kein Spieler teil !");
 		}
@@ -411,7 +898,8 @@ public class SpielBean implements iBediener, Serializable {
 		
 		setSpielerAmZug(spielerlist.iterator().next());
 		
-		
+		System.out.flush();
+		System.setOut(old);
 		
 		
 	}
@@ -424,7 +912,9 @@ public class SpielBean implements iBediener, Serializable {
 	 */
 	public void startPosZuweisen(Spieler spieler, int figur){
 		
-		
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		
 		if (spieler.getFarbe() == FarbEnum.ROT){
 			Spielfigur farbeFigur=this.brett.getStartRot().get(figur).getFigur();
@@ -506,6 +996,9 @@ public class SpielBean implements iBediener, Serializable {
 			}
 		}
 		
+		System.out.flush();
+		System.setOut(old);
+		
 	}
 	
 	/**
@@ -514,6 +1007,10 @@ public class SpielBean implements iBediener, Serializable {
 	 * @param feldId ist das feld wo die Figur die geschlagen wird und zurueck in die Startbox kommt
 	 */
 	public void schlagen(int feldId) {
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
+		
 		Spielfigur schlageFigur = brett.getWeg().get(feldId).getFigur();
 		
 		if(schlageFigur==null){
@@ -559,10 +1056,16 @@ public class SpielBean implements iBediener, Serializable {
 				}
 			}
 		}
+		
+		System.out.flush();
+		System.setOut(old);
 	}
 	
 	@Override
 	public void beenden(){
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		
 		if(this.ermittleGewinner()==true){
 			System.out.println(spielerAmZug.getName()+ " HAT GEWONNEN !");
@@ -654,6 +1157,9 @@ public class SpielBean implements iBediener, Serializable {
 				break;
 			}	
 		}
+		
+		System.out.flush();
+		System.setOut(old);
 	}
 	
 	public int bestand(ArrayList<Spielfeld> liste){
@@ -725,6 +1231,10 @@ public class SpielBean implements iBediener, Serializable {
 	 */
 	@Override
 	public void laufen(int figurId){
+		
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		
 		Spielfigur nowFigur=spielerAmZug.getFigurlist().get(figurId);
 		int letztePos=getBrett().getWeg().indexOf(nowFigur.getFeld());
@@ -1272,6 +1782,9 @@ public class SpielBean implements iBediener, Serializable {
 			}
 		}
 		
+		System.out.flush();
+		System.setOut(old);
+		
 	}	
 
 	/**
@@ -1304,8 +1817,15 @@ public class SpielBean implements iBediener, Serializable {
 	 * @param spielerAmZug der Spieler der am Zug ist
 	 */
 	public void setSpielerAmZug(Spieler spielerAmZug) {
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
+		
 		this.spielerAmZug = spielerAmZug;
 		System.out.println("-----"+spielerAmZug.getFarbe()+"----");
+		
+		System.out.flush();
+		System.setOut(old);
 	}	
 	public ArrayList<Spieler> getSpielerlist() {
 		return spielerlist;
@@ -1323,7 +1843,9 @@ public class SpielBean implements iBediener, Serializable {
 
 	@Override
 	public void setWuerfelZahl(Integer wuerfelZahl) {
-		
+		PrintStream ps = new PrintStream(baos);
+		PrintStream old = System.out;
+		System.setOut(ps);
 		
 		
 		if (wuerfelZahl!=null && wuerfelZahl >=1 ){
@@ -1331,6 +1853,9 @@ public class SpielBean implements iBediener, Serializable {
 //			System.out.println(wuerfelZahl);
 		}
 		this.wuerfelZahl = wuerfelZahl;
+		
+		System.out.flush();
+		System.setOut(old);
 	}
 	
 	

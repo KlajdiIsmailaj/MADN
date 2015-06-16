@@ -1,11 +1,17 @@
 package servlets;
 
-
-
 import testmadn.DatenzugriffSerialisiert;
 import testmadn.SpielBean;
 
-public class Brett {
+
+
+
+
+
+
+
+public class BrettLaden {
+	
 	
 	static String s="";
 	
@@ -24,19 +30,21 @@ public class Brett {
 	"</head>" +
 	"<body>" ;
 	}
+	
+	
 	public static String getFooter(){
 	return 
 	"</body>"+
 	"</html>";
 	}
 	public static  String getMenu(){
+	
 	String s="";
-
+	
 	
 	s+="<center>";
 	s+="<div id='cssmenu'>";
 	s+="<ul>";
-	s+="<li class='active'><a href='#'>Speichern als</a></li>";
 	s+="<li><a href='/MADNWeb/Speichern.jsp'>SER</a></li>";
 	s+="<li><a href='#'>CSV</a></li>";
 	s+="<li><a href='#'>PDF</a></li>";
@@ -55,15 +63,15 @@ public class Brett {
 	
 	//------Refresh------
 	s+="<form action='Refresh' method='post'>";
-	s+="<input id='refresh' type = 'submit' value = 'Refresh' name='refreshNormal'>";
+	s+="<input id='refresh' type = 'submit' value = 'Refresh' name='refreshLaden'>";
 	s+="</form>";
 	
 	
 	
 	//------wuerfeln------
-	s+="<form action='Wuerfeln' method='post'>";
-	if(Index.getGame().ermittleSpielerAmZugFarbe().equals(Index.getGame().gibFarbeSession())){
-		s+="<input  id='wurf' type = 'submit' value = 'Würfeln' name='wurfNormal'>";
+	s+="<form action='Wuerfeln' method='post' >";
+	if(SpielerLadenWeb.getGameLaden().ermittleSpielerAmZugFarbe().equals(SpielerLadenWeb.getGameLaden().gibFarbeSession())){
+		s+="<input  id='wurf' type = 'submit' value = 'Würfeln' name='wurfLaden'>";
 	}else{
 		s+="<input disabled id='wurf' type = 'submit' value = 'Würfeln'>";
 	}
@@ -71,25 +79,28 @@ public class Brett {
 	
 	
 	
+	
 	//------Laufen Ki------
 	s+="<form action='LaufenKi' method='post'>";
-	if(Index.getGame().ermittleKiWeb()==true){
+	if(SpielerLadenWeb.getGameLaden().ermittleKiWeb()==true){
 		s+="<input disabled id='laufKi' type = 'submit' value = 'Laufen (Ki)'>";
 	}else{
-		s+="<input id='laufKi' type = 'submit' value = 'Laufen (Ki)' name='laufenNormalKi'>";
+		s+="<input id='laufKi' type = 'submit' value = 'Laufen (Ki)' name='laufenLadenKi'>";
 	}
 	s+="</form>";
+	
 	
 	
 	
 	//--------beenden-----
 	s+="<form action='Beenden' method='post'>";
-	if(Index.getGame().ermittleSpielerAmZugFarbe().equals(Index.getGame().gibFarbeSession())){
-		s+="<input id='beenden' type = 'submit' value = 'Zug Beenden' name='beendenNormal'>";
+	if(SpielerLadenWeb.getGameLaden().ermittleSpielerAmZugFarbe().equals(SpielerLadenWeb.getGameLaden().gibFarbeSession())){
+		s+="<input id='beenden' type = 'submit' value = 'Zug Beenden' name='beendenLaden'>";
 	}else{
 		s+="<input disabled id='beenden' type = 'submit' value = 'Zug Beenden'>";
 	}
 	s+="</form>";
+	
 	
 	
 	s+="</div>";
@@ -139,6 +150,9 @@ public class Brett {
 			if(b==111||b==112||b==115||b==116||b==117||b==120||b==121){
 				s+=link(updateFigur(b))+updateFigur(b)+"</a>";
 			}
+
+			
+			
 			s+= "</a></td>";
 		}
 		s+="</tr>";
@@ -160,16 +174,16 @@ public class Brett {
 		String fig="";
 		
 		if(im.equals("<img src='Bilder/rot1.png'>")||im.equals("<img src='Bilder/blau1.png'>")||im.equals("<img src='Bilder/gruen1.png'>")||im.equals("<img src='Bilder/gelb1.png'>")){
-			fig="<a href='/MADNWeb/Laufen0'>";
+			fig="<a href='/MADNWeb/Laufen0Laden'>";
 		}
 		else if(im.equals("<img src='Bilder/rot2.png'>")||im.equals("<img src='Bilder/blau2.png'>")||im.equals("<img src='Bilder/gruen2.png'>")||im.equals("<img src='Bilder/gelb2.png'>")){
-			fig="<a href='/MADNWeb/Laufen1'>";
+			fig="<a href='/MADNWeb/Laufen1Laden'>";
 		}
 		else if(im.equals("<img src='Bilder/rot3.png'>")||im.equals("<img src='Bilder/blau3.png'>")||im.equals("<img src='Bilder/gruen3.png'>")||im.equals("<img src='Bilder/gelb3.png'>")){
-			fig="<a href='/MADNWeb/Laufen2'>";
+			fig="<a href='/MADNWeb/Laufen2Laden'>";
 		}
 		else if(im.equals("<img src='Bilder/rot4.png'>")||im.equals("<img src='Bilder/blau4.png'>")||im.equals("<img src='Bilder/gruen4.png'>")||im.equals("<img src='Bilder/gelb4.png'>")){
-			fig="<a href='/MADNWeb/Laufen3'>";
+			fig="<a href='/MADNWeb/Laufen3Laden'>";
 		}
 		return fig;
 	}
@@ -179,58 +193,58 @@ public class Brett {
 		String o="";
 		
 		//----Rot------
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="rot0"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="rot0"){
 			o="<img src='Bilder/rot1.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="rot1"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="rot1"){
 			o="<img src='Bilder/rot2.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="rot2"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="rot2"){
 			o="<img src='Bilder/rot3.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="rot3"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="rot3"){
 			o="<img src='Bilder/rot4.png'>";
 		}
 		
 		//-----Blau-----
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="blau0"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="blau0"){
 			o="<img src='Bilder/blau1.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="blau1"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="blau1"){
 			o="<img src='Bilder/blau2.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="blau2"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="blau2"){
 			o="<img src='Bilder/blau3.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="blau3"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="blau3"){
 			o="<img src='Bilder/blau4.png'>";
 		}
 		
 		//----Gruen-----
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="gruen0"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="gruen0"){
 			o="<img src='Bilder/gruen1.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="gruen1"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="gruen1"){
 			o="<img src='Bilder/gruen2.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="gruen2"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="gruen2"){
 			o="<img src='Bilder/gruen3.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="gruen3"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="gruen3"){
 			o="<img src='Bilder/gruen4.png'>";
 		}
 		
 		//----Gelb-----
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="gelb0"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="gelb0"){
 			o="<img src='Bilder/gelb1.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="gelb1"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="gelb1"){
 			o="<img src='Bilder/gelb2.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="gelb2"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="gelb2"){
 			o="<img src='Bilder/gelb3.png'>";
 		}
-		if(Index.getGame().gibFigurWebId()[i]!=null&&Index.getGame().gibFigurWebId()[i]=="gelb3"){
+		if(SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]!=null&&SpielerLadenWeb.getGameLaden().gibFigurWebId()[i]=="gelb3"){
 			o="<img src='Bilder/gelb4.png'>";
 		}
 		

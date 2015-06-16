@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
 <br><br>
 <div id="header">
 </div>
@@ -18,7 +17,7 @@
 
 <div id="form2">
 <form action="Index" method="post"><input id="spielStarten" type = "submit" value = "Spiel Starten"></form>
-<input id="spielLaden" type = "submit" value = "Spiel Laden">
+<form action="SpielLadenButton" method="post"><input id="spielLaden" type = "submit" value = "Spiel Laden"></form>
 </div>
 
 

@@ -16,15 +16,15 @@
 <div id="form">
 
 
-<%out.println(request.getAttribute("a")); %>
-<%out.println(request.getAttribute("b")); %>
+<%//out.println(request.getAttribute("a")); %>
+<%//out.println(request.getAttribute("b")); %>
 
-
+<img src="Bilder/load.GIF">
 
 
 
 </div>
-
+<br><br>
 
 <form action="Wait" method="post">
 <center><input id="weiterButtonWait" type = "submit" value = "weiter"></center>

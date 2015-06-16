@@ -36,7 +36,11 @@
 <input id="refresh" type = "submit" value = "Refresh">
 </form>
 <br><br>
+
+
+<form action='Wuerfeln' method='post'>
 <input id="wurf" type = "submit" value = "Würfeln">
+</form>
 <br><br>
 <input id="laufKi" type = "submit" value = "Laufen (Ki)">
 <br><br>
@@ -45,24 +49,12 @@
 <br>
 
 
-   <!--
+
+
+
 <center><table border="1" width="20" >
-<tr>  <td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a>  </td><td><a><img src="Bilder/rot1.png"></a>  </td><td><a><img src="Bilder/rot1.png"></a>  </td> 	<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a>  </td><td><a><img src="Bilder/rot1.png"></a>  </td>  </tr>
-<tr>  <td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td>  </tr>
-<tr>  <td></td><td></td> 		<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td></td><td></td>  	</tr>
-<tr>  <td></td><td></td> 		<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td></td><td></td>  	</tr>
-<tr>  <td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td>  </tr>
-<tr>  <td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td></td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td>  </tr>  
-<tr>  <td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td>  </tr> 
-<tr>  <td></td><td></td> 		<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td></td><td></td>  	</tr>
-<tr>  <td></td><td></td> 		<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td></td><td></td>  	</tr>
-<tr>  <td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td>  </tr>
-<tr>  <td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td> 	<td></td><td></td> 		<td><a><img src="Bilder/rot1.png"></a> </td><td><a><img src="Bilder/rot1.png"></a> </td>  </tr>
-</table></center>
--->
-<center><table border="1" width="20" >
-<tr>  <td><a></a> </td><td><a></a> </td> 	<td></td><td></td> 		<td><a></a>  </td><td><a></a>  </td><td><a></a>  </td> 	<td></td><td></td> 		<td><a></a>  </td><td><a></a>  </td>  </tr>
-<tr>  <td><a></a> </td><td><a></a> </td> 	<td></td><td></td> 		<td><a></a> </td><td><a></a> </td><td><a></a> </td> 	<td></td><td></td> 		<td><a></a> </td><td><a></a> </td>  </tr>
+<tr>  <td id="1"><a><img src='Bilder/rot2.png'></a> </td><td><a><img src='Bilder/rot2.png'></a> </td> 	<td></td><td></td> 		<td><a></a>  </td><td><a></a>  </td><td><a></a>  </td> 	<td></td><td></td> 		<td><a></a>  </td><td><a></a>  </td>  </tr>
+<tr>  <td><a><img src='Bilder/rot2.png'></a> </td><td><a><img src='Bilder/rot2.png'></a> </td> 	<td></td><td></td> 		<td><a></a> </td><td><a></a> </td><td><a></a> </td> 	<td></td><td></td> 		<td><a></a> </td><td><a></a> </td>  </tr>
 <tr>  <td></td><td></td> 		<td></td><td></td> 		<td><a></a> </td><td><a></a> </td><td><a></a> </td> 	<td></td><td></td> 		<td></td><td></td>  	</tr>
 <tr>  <td></td><td></td> 		<td></td><td></td> 		<td><a></a> </td><td><a></a> </td><td><a></a> </td> 	<td></td><td></td> 		<td></td><td></td>  	</tr>
 <tr>  <td><a></a> </td><td><a></a> </td> 	<td><a></a> </td><td><a></a> </td> 	<td><a></a> </td><td><a></a> </td><td><a></a> </td> 	<td><a></a> </td><td><a></a> </td> 	<td><a></a> </td><td><a></a> </td>  </tr>
@@ -78,7 +70,7 @@
 
 <br><br><br>
 <br>
-<center><div id="log"><textarea readonly disabled id="logging" rows="1" cols="1"></textarea></div></center>
+<center><div id="log"><textarea name="gg" readonly disabled id="logging" rows="1" cols="1"></textarea></div></center>
 
 
 </body>

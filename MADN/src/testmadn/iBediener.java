@@ -31,12 +31,23 @@ public interface iBediener {
 	String ladeName(int i);
 	Integer getAnzahlWeb();
 	void setAnzahlWeb(Integer anzahöWeb);
-	String[] spielerName();
-	ArrayList<String> nameSpieler();
+	
+
 	String nameWeb1();
 	String nameWeb2();
 	String nameWeb3();
 	String nameWeb4();
+	boolean farbeWebRot();
+	boolean farbeWebBlau();
+	boolean farbeWebGelb();
+	boolean farbeWebGruen();
+
+	
+	String[] gibFigurWebId();
+	boolean ermittleKiWeb();
+	String ermittleSpielerAmZugFarbe();
+	void farbeSession(String farbe);
+	String gibFarbeSession();
 	
 	
 }

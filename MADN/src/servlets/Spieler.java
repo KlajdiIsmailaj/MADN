@@ -1,6 +1,5 @@
 package servlets;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
@@ -13,8 +12,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
 
 /**
  * Servlet implementation class Login
@@ -23,7 +21,6 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 public class Spieler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String brett = "/Spielbrett.jsp";
 	private static final String wait = "/Wait.jsp";
 
 
@@ -45,79 +42,58 @@ public class Spieler extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		HttpSession session=request.getSession();
+		
 		ServletContext sc = this.getServletContext();
-		RequestDispatcher rd = sc.getRequestDispatcher(brett);
 		RequestDispatcher rd2 = sc.getRequestDispatcher(wait);
 		
-		String name = request.getParameter("name");
-//		request.getSession(true).setAttribute("name",name);	
 		
+		
+		
+		
+		String name = request.getParameter("name");	
 		String farbe = request.getParameter("farbe");
-//		request.getSession(true).setAttribute("farbe",farbe);
-		
+		session.setAttribute("farbe", farbe);
 		String spielerart = request.getParameter("spielerart");
-//		request.getSession(true).setAttribute("spielerart",spielerart);	
 		
-		Index.getGame().newSpieler(name, farbe, spielerart);
-		
-		
-//		HttpSession s = request.getSession(true);
-//		if(s.getAttribute("Speil")==null){
-//			s.setAttribute("Spiel", Index.getGame());
+//		if(Index.getGame().bestandSpielerlist()==0){
+			Index.getGame().newSpieler(name, farbe, spielerart);
+			
+//			session.setAttribute("farbe1", farbe);
 //		}
-//		SpielBean spiel= (SpielBean) s.getAttribute("Spiel");
-//		System.out.println("server-konsole" + spiel);
-//		response.setContentType("text/html");
-//		PrintWriter out = response.getWriter();
-//		try{
+//		else if(farbe.equals(session.getAttribute("farbe1"))){
 //			
-//			out.println(Brett.getHeader());
-//			out.println(Brett.getMenu());
-//			out.println("<center>");
-//			out.println("<h1> Wellcome  !!!!</h1>");
-//			out.println("</center>");
-//			
-//			
-//			
-//		}finally{
-//			out.println(Brett.getFooter());
-//			out.close();
-//			
+//			rd1.forward(request, response);
+//			System.out.println("der spieler existiert schon");
 //		}
+//		else if(!farbe.equals(session.getAttribute("farbe1"))){
+//			Index.getGame().newSpieler(name, farbe, spielerart);
+//			session.setAttribute("farbe1", farbe);
+//		}	
 		
-		
+	
 		
 		
 		
 		if(Index.getGame().getAnzahlWeb()==1){
-			Index.getGame().spielStart();
-			
 			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			try{
-				
 				out.println(Brett.getHeader());
 				out.println(Brett.getMenu());
-//				out.println("<center>");
-//				
-//				out.println("</center>");
-				
-				
-				
 			}finally{
 				out.println(Brett.getFooter());
 				out.close();
-				
 			}
 			
-			
-			rd.forward(request, response);
+			Index.getGame().spielStart();
 		}else{
 			rd2.forward(request, response);
 		}
 	}
-
+	
+	
 	
 
 	
