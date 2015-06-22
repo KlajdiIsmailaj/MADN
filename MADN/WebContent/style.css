@@ -8,6 +8,7 @@ body{
 	background-size: cover;
 }
 
+
 #header{
 	width: 500px;
 	height: 200px;
@@ -87,6 +88,8 @@ input#spielLaden{
 	
 	
 }
+
+
 
 div#form2{
 	border-radius: 10px;

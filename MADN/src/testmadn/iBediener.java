@@ -30,7 +30,7 @@ public interface iBediener {
 	int updatePosLaden(int spieler, int figurID);
 	String ladeName(int i);
 	Integer getAnzahlWeb();
-	void setAnzahlWeb(Integer anzahöWeb);
+	void setAnzahlWeb(Integer anzahalWeb);
 	
 
 	String nameWeb1();
@@ -48,6 +48,8 @@ public interface iBediener {
 	String ermittleSpielerAmZugFarbe();
 	void farbeSession(String farbe);
 	String gibFarbeSession();
+	void laufKi();
+	boolean menschDrin();
 	
 	
 }

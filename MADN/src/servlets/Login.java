@@ -15,6 +15,7 @@ import javax.servlet.http.*;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String Spieler = "/Spieler.jsp";
+//	private static final String Gegner = "/Gegner.jsp";
 	
 	
 
@@ -39,10 +40,19 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {				
 		ServletContext sc = this.getServletContext();
 		RequestDispatcher rd = sc.getRequestDispatcher(Spieler); 
+//		RequestDispatcher rd2 = sc.getRequestDispatcher(Gegner);
 		
 		int anz = Integer.parseInt(request.getParameter("spielerAnz"));
+		request.getSession().setAttribute("anzahl", anz);
 		Index.getGame().setAnzahlWeb(anz);
-		rd.forward(request, response);
+		
+//		if(anz==1){
+			rd.forward(request, response);
+//		}else{
+//			rd2.forward(request, response);
+//		}
+		
+		
 		
 	}
 	

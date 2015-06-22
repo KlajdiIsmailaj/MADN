@@ -13,9 +13,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="itextpdf-5.5.6.jar" sourcepath="itextpdf-5.5.6-sources.jar">
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itextpdf-5.5.6.jar" sourcepath="WebContent/WEB-INF/lib/itextpdf-5.5.6-sources.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/MADN/itextpdf-5.5.6-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/MADN/WebContent/WEB-INF/lib/itextpdf-5.5.6-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>

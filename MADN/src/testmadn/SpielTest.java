@@ -11,10 +11,15 @@ public class SpielTest {
 
 	public static void main(String[] args) {
 		
-		SpielBean spiel1 = new SpielBean();
+		iDatenzugriff d=new DatenzugriffXML();
 		
-		Spieler gelb=new Spieler("Klajdi",FarbEnum.GELB,null);
-		Spieler gruen=new Spieler("Myt",FarbEnum.GRUEN,null);
+//		SpielBean spiel1 = new SpielBean();
+//		spiel1.newSpieler("Klajdi", "Rot", "Mensch");
+//		spiel1.newSpieler("Myt", "Blau", "KI Aggressiv");
+		
+		
+//		Spieler rot=new Spieler("Klajdi",FarbEnum.ROT,null);
+//		Spieler blau=new Spieler("Myt",FarbEnum.BLAU,null);
 //		spiel1.newSpieler("Klajdi", "Rot", "KI Aggressiv");
 //		Spieler blau=new Spieler(null,null,null);
 //		Spieler gruen=new Spieler("Kati",FarbEnum.GRUEN,new KI_Defensiv(spiel1));
@@ -22,12 +27,12 @@ public class SpielTest {
 		
 		
 		
-		spiel1.nimmtTeil(gelb);
-		spiel1.nimmtTeil(gruen);
+//		spiel1.nimmtTeil(gelb);
+//		spiel1.nimmtTeil(gruen);
 //		spiel1.nimmtTeil(gruen);
 //		spiel1.nimmtTeil(gelb);
 
-		spiel1.spielStart();
+//		spiel1.spielStart();
 //		rot.wuerfeln();
 
 		
@@ -39,19 +44,120 @@ public class SpielTest {
 //			System.out.println("im figur");
 //		}
 		
-		
+		SpielBean spiel1=(SpielBean)d.laden("/Users/sevenvista/Desktop/kitest.xml");
+	
 		
 //		-------------------KI LAEUFT------------------------
+//		System.out.println(spiel1.getSpielerlist());
+//		System.out.println(spiel1.getSpielerAmZug().getName());
+//		System.out.println(spiel1.getBrett());
+//		for(Spieler a:spiel1.getSpielerlist()){
+//			if(a!=null&&a.getKi()!=null){
+//				a.getKi().setSpiel(spiel1);
+//			}
+//		}
+		
 		spiel1.setWuerfelZahl(6);	
-		spiel1.laufen(0);
-		spiel1.setWuerfelZahl(1);	
+		spiel1.laufen(3);
+		
+		
+//		System.out.println(spiel1.getBrett());
+		spiel1.setWuerfelZahl(5);	
 		spiel1.laufen(0);
 		spiel1.beenden();
+		
+		spiel1.wuerfeln();
+//		if(spiel1.getSpielerlist().get(1)==spiel1.getSpielerAmZug()){
+//			System.out.println("true");
+//		}else{
+//			System.out.println("false");
+//		}
+//		System.out.println(spiel1.getSpielerAmZug().getFarbe());
+//		if(spiel1.getSpielerAmZug().getFarbe()==FarbEnum.BLAU){
+//			System.out.println("true");
+//		}else{
+//			System.out.println("false");
+//		}
+		spiel1.laufen(spiel1.gibFigurKi());
 //		
-		spiel1.setWuerfelZahl(6);	
-		spiel1.laufen(0);
-		spiel1.setWuerfelZahl(11);	
-		spiel1.laufen(0);
+////		
+//		
+//		spiel1.setWuerfelZahl(6);
+//		spiel1.laufen(0);
+//		spiel1.setWuerfelZahl(28);
+//		spiel1.laufen(0);
+//		spiel1.setWuerfelZahl(6);
+//		spiel1.laufen(0);
+//		spiel1.setWuerfelZahl(9);
+//		spiel1.laufen(0);
+//		
+//		spiel1.setWuerfelZahl(6);
+//		spiel1.laufen(1);
+//		spiel1.setWuerfelZahl(28);
+//		spiel1.laufen(1);
+//		spiel1.setWuerfelZahl(6);
+//		spiel1.laufen(1);
+//		spiel1.setWuerfelZahl(8);
+//		spiel1.laufen(1);
+//		
+//		spiel1.setWuerfelZahl(6);
+//		spiel1.laufen(2);
+//		spiel1.setWuerfelZahl(28);
+//		spiel1.laufen(2);
+//		spiel1.setWuerfelZahl(6);
+//		spiel1.laufen(2);
+//		spiel1.setWuerfelZahl(7);
+//		spiel1.laufen(2);
+//		
+//		spiel1.setWuerfelZahl(6);
+//		spiel1.laufen(3);
+//		spiel1.setWuerfelZahl(28);
+//		spiel1.laufen(3);
+//		spiel1.setWuerfelZahl(6);
+//		spiel1.laufen(3);
+//		spiel1.setWuerfelZahl(4);
+//		spiel1.laufen(3);
+//		
+//		spiel1.laufKi();
+//		
+//		spiel1.wuerfeln();
+//		spiel1.laufen(spiel1.gibFigurKi());
+		
+		
+		
+		
+////		
+//////		
+//			
+//		
+//		
+//		
+//		spiel1.setWuerfelZahl(6);	
+//		spiel1.laufen(0);
+//		spiel1.setWuerfelZahl(6);	
+//		spiel1.laufen(0);
+//		spiel1.setWuerfelZahl(4);	
+//		spiel1.laufen(1);
+//		spiel1.beenden();
+//		
+//		spiel1.setWuerfelZahl(6);	
+//		spiel1.laufen(0);
+//		spiel1.setWuerfelZahl(3);	
+//		spiel1.laufen(0);
+		
+		
+//		
+//		iDatenzugriff csv = new DatenzugriffCSV();
+//		csv.speichern("C:\\Users\\tanifor\\Desktop\\halo123.csv", spiel1);
+//		csv.laden("C:\\Users\\tanifor\\Desktop\\halo123.csv");
+		
+		
+//		iDatenzugriff pdf = new DatenzugriffPDF();
+//		pdf.speichern("hi", spiel1);
+		
+//		System.out.println(spiel1.getBrett());
+		
+		
 //		spiel1.laufen(spiel1.gibFigurKi());
 		
 //		spiel1.setWuerfelZahl(6);

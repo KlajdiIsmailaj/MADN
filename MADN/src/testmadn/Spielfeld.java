@@ -2,14 +2,18 @@ package testmadn;
 
 import java.io.Serializable;
 
-import javax.swing.JButton;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * Es wird ein Spielfeld erzeugt
  * @author Gruppe A2
  *
  */
-public class Spielfeld extends JButton implements Serializable {
+@XmlType(propOrder={"id","farbe","figur"})
+public class Spielfeld implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -18,6 +22,10 @@ public class Spielfeld extends JButton implements Serializable {
 	
 	private Spielbrett brett;
 	private Spielfigur figur;
+	
+	public Spielfeld(){
+		
+	}
 	
 	/**
 	 * Konstruktor der Klasse
@@ -35,6 +43,8 @@ public class Spielfeld extends JButton implements Serializable {
 	 * @return id ist die ID eines Spielfeldes
 	 */
 	//----------Setter & Getter-----------
+	
+	@XmlAttribute(name="Feld-Id")
 	public String getId(){
 		return id;
 	}
@@ -83,6 +93,7 @@ public class Spielfeld extends JButton implements Serializable {
 	 * eine auf dem Feld stehende Spielfigur wird gesetzt
 	 * @param figur ist die Spielfigur auf einem Spielfeld
 	 */
+	@XmlElement(name="Figur")
 	public void setFigur(Spielfigur figur){
 //		if(figur == null){
 //			throw new RuntimeException("Die Figur ist nicht vorhanden!");
@@ -100,6 +111,7 @@ public class Spielfeld extends JButton implements Serializable {
 	 * die Farbe eines Spielfeldes wird zurueck gegeben
 	 * @return farbe ist die Farbe eines Spielfeldes
 	 */
+	@XmlElement(name="Feldfarbe")
 	public FarbEnum getFarbe() {
 		return farbe;
 	}
@@ -117,6 +129,7 @@ public class Spielfeld extends JButton implements Serializable {
 	 * gibt an welches feld auf welchem ArrayList sitzt
 	 * @return brett ist die ArrayList wo das feld liegt
 	 */
+	@XmlTransient
 	public Spielbrett getBrett() {
 		return brett;
 	}

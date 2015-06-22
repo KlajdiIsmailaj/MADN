@@ -37,30 +37,42 @@ public class Wuerfeln extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getParameter("wurfLaden")!=null){
+			
 			SpielerLadenWeb.getGameLaden().wuerfeln();
+			BrettLaden.press=false;
 			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			try{
 				out.println(BrettLaden.getHeader());
 				out.println(BrettLaden.getMenu());
+				out.println(BrettLaden.getTable());
+				out.println(BrettLaden.getMenuEnd());
 			}finally{
 				out.println(BrettLaden.getFooter());
 				out.close();
 			}
+			
+			
 		}
 		if(request.getParameter("wurfNormal")!=null){
+			
 			Index.getGame().wuerfeln();
+			Brett.press=false;
 			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			try{
 				out.println(Brett.getHeader());
 				out.println(Brett.getMenu());
+				out.println(Brett.getTable());
+				out.println(Brett.getMenuEnd());
 			}finally{
 				out.println(Brett.getFooter());
 				out.close();
 			}
+			
+			
 		}
 		
 	}

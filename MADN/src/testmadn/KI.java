@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
 
 
 
 
- 
+
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlType
  public abstract class KI implements Serializable{
 	private static final long serialVersionUID = 1L;
  
@@ -22,6 +27,10 @@ import java.util.Collections;
 	protected boolean kannRaus = false;
  
  
+	public KI(){
+		
+	}
+	
 	/**
 	 * der Konstruktor der Klasse mit der Komposition zu Spieler
 	 * @param spieler ist der Spieler
@@ -152,7 +161,9 @@ import java.util.Collections;
 		Spielfigur ergebnis= null;
 		kannLaufen=false;
 		
+	
 		try{
+			
 			if (this.spiel.getSpielerAmZug().getFarbe() == FarbEnum.ROT) {
 				int wegMax = 39;
 				int endMax=3;

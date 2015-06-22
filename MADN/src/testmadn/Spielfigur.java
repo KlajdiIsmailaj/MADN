@@ -3,13 +3,17 @@ package testmadn;
 import java.io.Serializable;
 
 import javax.swing.ImageIcon;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * Es wird eine Spielfigur erzeugt
  * @author Gruppe A2
  *
  */
-public class Spielfigur extends ImageIcon implements Serializable {
+@XmlType(propOrder={"id","farbe","player"})
+public class Spielfigur implements Serializable {
 	private static final long serialVersionUID = 1L;
  
  
@@ -18,6 +22,9 @@ public class Spielfigur extends ImageIcon implements Serializable {
 	private Spielfeld feld;
 	private Spieler player;
  
+	public Spielfigur(){
+		
+	}
 	
 	/**
 	 * Der Konstruktor
@@ -41,7 +48,7 @@ public class Spielfigur extends ImageIcon implements Serializable {
 			this.id = id;
 		}
 		else{
-			throw new RuntimeException("Id darf nur von 1 bis 4 sein !");
+			throw new RuntimeException("Id darf nur von 0 bis 3 sein !");
 		}
 		
 	}
@@ -50,6 +57,7 @@ public class Spielfigur extends ImageIcon implements Serializable {
 	 * Die Figur ID des jeweiligen Spielers wird zurueck gegeben
 	 * @return figurID ist die Spielfigur ID eines Spielers
 	 */
+	@XmlElement(name="Figur-Id")
 	public int getId() {
 		return id;
 	}
@@ -58,6 +66,7 @@ public class Spielfigur extends ImageIcon implements Serializable {
 	 * die Farbe der Spielfigur wird zurueck gegeben
 	 * @return farbe ist die Farbe der Spielfigur
 	 */
+	@XmlElement(name="Figurfarbe")
 	public FarbEnum getFarbe() {
 		return farbe;
 	}
@@ -78,6 +87,7 @@ public class Spielfigur extends ImageIcon implements Serializable {
 	 * das Spielfeld der darauf stehenden Spielfigur wird zurueck gegeben
 	 * @return spielfeld ist das momentane Spielfeld einer Spielfigur
 	 */
+	@XmlTransient
 	public Spielfeld getFeld() {		
 		return feld;
 	}
@@ -103,6 +113,7 @@ public class Spielfigur extends ImageIcon implements Serializable {
 	 * gibt den spieler der figur aus
 	 * @return player ist der spieler von dieser figur
 	 */
+	@XmlElement(name="Player")
 	public Spieler getPlayer() {
 		return player;
 	}

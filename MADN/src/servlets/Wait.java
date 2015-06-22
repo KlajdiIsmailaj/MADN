@@ -43,26 +43,22 @@ public class Wait extends HttpServlet {
 		ServletContext sc = this.getServletContext();
 		RequestDispatcher rd1 = sc.getRequestDispatcher(wait);
 		
-		String a=Index.getGame().nameWeb1();
-		String b=Index.getGame().nameWeb2();
+//		if(list.size()==0){
+//			list.add(request.getSession().getId());
+//		}else if(list.size()==1&&list.get(0)!=request.getSession().getId()){
+//			list.add(request.getSession().getId());	
+//		}else if(list.size()==2&&list.get(1)!=request.getSession().getId()&&list.get(0)!=request.getSession().getId()){
+//			list.add(request.getSession().getId());
+//		}else if(list.size()==3&&list.get(2)!=request.getSession().getId()&&list.get(1)!=request.getSession().getId()&&list.get(0)!=request.getSession().getId()){
+//			list.add(request.getSession().getId());
+//		}else if(list.size()==4&&list.get(3)!=request.getSession().getId()&&list.get(2)!=request.getSession().getId()&&list.get(1)!=request.getSession().getId()&&list.get(0)!=request.getSession().getId()){
+//			list.add(request.getSession().getId());
+//		}
 		
-		request.setAttribute("a", a);
-		request.setAttribute("b", b);
+//		int diff=Index.getGame().getAnzahlWeb()-Index.getGame().bestandSpielerlist();
 		
-		if(list.size()==0){
-			list.add(request.getSession().getId());
-		}else if(list.size()==1&&list.get(0)!=request.getSession().getId()){
-			list.add(request.getSession().getId());	
-		}else if(list.size()==2&&list.get(1)!=request.getSession().getId()&&list.get(0)!=request.getSession().getId()){
-			list.add(request.getSession().getId());
-			
-		}else if(list.size()==3&&list.get(2)!=request.getSession().getId()&&list.get(1)!=request.getSession().getId()&&list.get(0)!=request.getSession().getId()){
-			list.add(request.getSession().getId());
-		}else if(list.size()==4&&list.get(3)!=request.getSession().getId()&&list.get(2)!=request.getSession().getId()&&list.get(1)!=request.getSession().getId()&&list.get(0)!=request.getSession().getId()){
-			list.add(request.getSession().getId());
-		}
 		
-		if(Index.getGame().getAnzahlWeb()==list.size()){
+		if(Index.getGame().getAnzahlWeb()==Index.getGame().bestandSpielerlist()){
 			
 			
 			response.setContentType("text/html");
@@ -70,6 +66,8 @@ public class Wait extends HttpServlet {
 			try{
 				out.println(Brett.getHeader());
 				out.println(Brett.getMenu());
+				out.println(Brett.getTable());
+				out.println(Brett.getMenuEnd());
 			}finally{
 				out.println(Brett.getFooter());
 				out.close();

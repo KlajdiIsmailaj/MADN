@@ -4,14 +4,20 @@ package testmadn;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * Es wird ein Spieler erzeugt
  * @author Gruppe A2
  *
  */
+@XmlType(propOrder={"name","farbe","figurlist","figur","ki","kiDef","kiAggro"})
 public class Spieler implements Serializable {
 	private static final long serialVersionUID = 1L;
  
+	
 	private String name;
 	private FarbEnum farbe;
 	private Wuerfel wuerfel;
@@ -20,6 +26,34 @@ public class Spieler implements Serializable {
 	private boolean hatBereitsGewuerfelt = false;
 	private KI ki;
 	private Spielfigur figur;
+	private KI_Defensiv KiDef;
+	private KI_Aggressiv KiAggro;
+	
+	
+	@XmlElement
+	public KI_Defensiv getKiDef() {
+		return KiDef;
+	}
+
+
+	public void setKiDef(KI_Defensiv kiDef) {
+		KiDef = kiDef;
+	}
+
+	@XmlElement
+	public KI_Aggressiv getKiAggro() {
+		return KiAggro;
+	}
+
+
+	public void setKiAggro(KI_Aggressiv kiAggro) {
+		KiAggro = kiAggro;
+	}
+
+
+	public Spieler(){
+		
+	}
 	
  
 	/**
@@ -38,6 +72,7 @@ public class Spieler implements Serializable {
 		hinzufuegen();
 	}
 	
+	@XmlElement(name="ki")
 	public KI getKi() {
 		return ki;
 	}
@@ -82,6 +117,7 @@ public class Spieler implements Serializable {
 	 * der Name des Spielers wird zurueck gegeben
 	 * @return name ist der Name des Spielers
 	 */
+	@XmlElement(name="Spielername")
 	public String getName() {
 		return name;
 	}
@@ -101,6 +137,7 @@ public class Spieler implements Serializable {
 	 * die Farbe der Spielfigur wird zurueck gegeben
 	 * @return farbe ist die Farbe einer Spielfigur
 	 */
+	@XmlElement(name="Spielerfarbe")
 	public FarbEnum getFarbe() {
 		return farbe;
 	}
@@ -120,6 +157,7 @@ public class Spieler implements Serializable {
 	 * der Wuerfel des Spielers wird zurueck gegeben
 	 * @return wuerfel ist der Wuerfel des Spielers
 	 */
+	@XmlTransient
 	public Wuerfel getWuerfel() {
 		
 		System.out.println(this.getName()+" hat die zahl "+wuerfel+" gewuerfelt");
@@ -148,6 +186,7 @@ public class Spieler implements Serializable {
 	 * gibt die figur des spielers aus
 	 * @return figur ist die Spielfigur des Spielers
 	 */
+	@XmlElement(name="Figur")
 	public Spielfigur getFigur() {
 		return figur;
 	}
@@ -164,6 +203,7 @@ public class Spieler implements Serializable {
 	 * gibt die figuren des spielers aus
 	 * @return figurlist sind die Spielfiguren des Spielers
 	 */
+	@XmlElement(name="figurlist")
 	public ArrayList <Spielfigur> getFigurlist() {
 		return figurlist;
 	}

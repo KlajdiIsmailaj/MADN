@@ -2,6 +2,10 @@ package testmadn;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
 
 
 /**
@@ -9,7 +13,7 @@ import java.io.Serializable;
  * @author Gruppe A2
  *
  */
- 
+@XmlType
 public class KI_Aggressiv extends KI implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -17,6 +21,10 @@ public class KI_Aggressiv extends KI implements Serializable {
 //	private boolean kannSchlagen = false;
 //	private boolean kannLaufen = false;
 //	private boolean kannRaus = false;
+	
+	public KI_Aggressiv(){
+		
+	}
  
 	/**
 	 * der Konstruktor der Klasse KI Aggressiv

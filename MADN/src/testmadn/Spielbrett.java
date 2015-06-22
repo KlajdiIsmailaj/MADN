@@ -5,12 +5,16 @@ package testmadn;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
 
 /**
  * Ein Spielbrett wird erzeugt
  * @author Gruppe A2
  *
  */
+@XmlType(propOrder={"feld","startRot","startBlau","startGruen","startGelb","endRot","endBlau","endGruen","endGelb","weg"})
 public class Spielbrett implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -161,6 +165,7 @@ public class Spielbrett implements Serializable {
 	 * der Hauptweg des Spiels wird zurueck gegeben 
 	 * @return weg ist der Weg des ganzen Spiels
 	 */
+	@XmlElement
 	public ArrayList<Spielfeld> getWeg() {
 		return weg;
 	}
@@ -177,6 +182,7 @@ public class Spielbrett implements Serializable {
 	 * die Startbox von rot wird zurueck gegeben
 	 * @return startRot ist die Startbox von rot
 	 */
+	@XmlElement
 	public ArrayList<Spielfeld> getStartRot() {
 		return startRot;
 	}
@@ -193,6 +199,7 @@ public class Spielbrett implements Serializable {
 	 * die Startbox von Blau wird zurueck gegeben
 	 * @return startBlau ist die Startbox von Blau
 	 */
+	@XmlElement
 	public ArrayList<Spielfeld> getStartBlau() {
 		return startBlau;
 	}
@@ -209,6 +216,7 @@ public class Spielbrett implements Serializable {
 	 * die Startbox von gruen wird zurueck gegeben
 	 * @return startGruen ist die Startbox von gruen
 	 */
+	@XmlElement
 	public ArrayList<Spielfeld> getStartGruen() {
 		return startGruen;
 	}
@@ -225,6 +233,7 @@ public class Spielbrett implements Serializable {
 	 * die Startbox von gelb wird zurueck gegeben
 	 * @return startGelb ist die Startbox von gelb
 	 */
+	@XmlElement
 	public ArrayList<Spielfeld> getStartGelb() {
 		return startGelb;
 	}
@@ -241,6 +250,7 @@ public class Spielbrett implements Serializable {
 	 * die Endbox von rot wird zurueck gegeben
 	 * @return endRot ist die Endbox von rot
 	 */
+	@XmlElement
 	public ArrayList<Spielfeld> getEndRot() {
 		return endRot;
 	}
@@ -257,6 +267,7 @@ public class Spielbrett implements Serializable {
 	 * die Endbox von blau wird zurueck gegeben
 	 * @return endBlau ist die Endbox von blau
 	 */
+	@XmlElement
 	public ArrayList<Spielfeld> getEndBlau() {
 		return endBlau;
 	}
@@ -273,6 +284,7 @@ public class Spielbrett implements Serializable {
 	 * die Endbox von gruen wird zurueck gegeben
 	 * @return endGruen ist die Endbox von gruen
 	 */
+	@XmlElement
 	public ArrayList<Spielfeld> getEndGruen() {
 		return endGruen;
 	}
@@ -289,6 +301,7 @@ public class Spielbrett implements Serializable {
 	 * die Endbox von gelb wird zurueck gegeben
 	 * @return endGelb ist die Endbox von gelb
 	 */
+	@XmlElement
 	public ArrayList<Spielfeld> getEndGelb() {
 		return endGelb;
 	}
@@ -302,9 +315,10 @@ public class Spielbrett implements Serializable {
 	}
 
 	/**
-	  * ein Spielfeld wird zurueck gegeben
-	  * @return feld ist ein Spielfeld
-	  */
+	 * ein Spielfeld wird zurueck gegeben
+	 * @return feld ist ein Spielfeld
+	 */
+	@XmlElement(name="Feld")
 	public Spielfeld getFeld() {
 		return feld;
 	}

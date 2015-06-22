@@ -42,6 +42,8 @@ public class Laufen1 extends HttpServlet {
 		try{
 			out.println(Brett.getHeader());
 			out.println(Brett.getMenu());
+			out.println(Brett.getTable());
+			out.println(Brett.getMenuEnd());
 		}finally{
 			out.println(Brett.getFooter());
 			out.close();

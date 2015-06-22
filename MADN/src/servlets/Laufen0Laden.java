@@ -44,6 +44,8 @@ public class Laufen0Laden extends HttpServlet {
 		try{
 			out.println(BrettLaden.getHeader());
 			out.println(BrettLaden.getMenu());
+			out.println(BrettLaden.getTable());
+			out.println(BrettLaden.getMenuEnd());
 		}finally{
 			out.println(BrettLaden.getFooter());
 			out.close();

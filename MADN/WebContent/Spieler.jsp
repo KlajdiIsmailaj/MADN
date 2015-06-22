@@ -28,14 +28,15 @@ function validateForm() {
  <form name="myForm" action="Spieler" method="post" onsubmit="return validateForm()" >
 
    <div id="form">
+   
   <label id="labels1">Bitte gib deinen Namen ein:</label> 
   <input id="name" name="name" type="text">
   
    <br>
    <br>
-   
-   <label id="labels1">Wähle deine Farbe aus:</label> 
-  <select id ="farbe" name="farbe">
+
+<label id="labels1">Wähle deine Farbe aus:</label> 
+<select id ="farbe" name="farbeSpieler">
 	<option value="Rot">Rot</option>
 	<option value="Blau">Blau</option>
 	<option value="Grün">Grün</option>
@@ -43,16 +44,9 @@ function validateForm() {
 </select>
    <br>
    <br>
-   
-   <label id="labels1">Wähle deinen Spieltyp: </label> 
-   <select id ="spielerart" name ="spielerart">
-	<option value="Mensch">Mensch</option>
-	<option value="KI Aggressiv">Ki-Aggressiv</option>
-	<option value="KI Defensiv">Ki-Defensiv</option>
-</select>
+   <br>
 
-<br>
-<br>
+
 
 <input id="spielerAnlegen" name="spielerAnlegen" type="submit" value="Spieler anlegen" >
 

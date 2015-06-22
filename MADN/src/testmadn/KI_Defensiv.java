@@ -2,19 +2,27 @@ package testmadn;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
 
 /**
  * die Unterklasse KI Defensiv von KI wird erzeugt
  * @author Gruppe A2
  *
  */
- 
+@XmlType
 public class KI_Defensiv extends KI implements Serializable {
 	private static final long serialVersionUID = 1L;
  
 //	private boolean kannSchlagen = false;
 //	private boolean kannLaufen = false;
 //	private boolean kannRaus = false;
+	
+	public KI_Defensiv(){
+		
+	}
  
 	/**
 	 * der Konstruktor der Klasse KI Aggressiv

@@ -37,13 +37,22 @@ public class Beenden extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getParameter("beendenLaden")!=null){
+			
+			if(SpielerLadenWeb.getGameLaden().ermittleSpielerAmZugFarbe().equals(SpielerLadenWeb.getGameLaden().gibFarbeSession())){
+				BrettLaden.press=true;
+			}
+			
 			SpielerLadenWeb.getGameLaden().beenden();
+			SpielerLadenWeb.getGameLaden().laufKi();
 			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			try{
 				out.println(BrettLaden.getHeader());
 				out.println(BrettLaden.getMenu());
+				out.println(BrettLaden.getTable());
+				out.println(BrettLaden.getMenuEnd());
+				
 			}finally{
 				out.println(BrettLaden.getFooter());
 				out.close();
@@ -51,13 +60,21 @@ public class Beenden extends HttpServlet {
 			
 		}
 		if(request.getParameter("beendenNormal")!=null){
+			
+			if(Index.getGame().ermittleSpielerAmZugFarbe().equals(Index.getGame().gibFarbeSession())){
+				Brett.press=true;
+			}
+			
 			Index.getGame().beenden();
+			Index.getGame().laufKi();
 			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			try{
 				out.println(Brett.getHeader());
 				out.println(Brett.getMenu());
+				out.println(Brett.getTable());
+				out.println(Brett.getMenuEnd());
 			}finally{
 				out.println(Brett.getFooter());
 				out.close();

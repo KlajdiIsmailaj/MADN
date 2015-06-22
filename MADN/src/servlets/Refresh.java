@@ -37,20 +37,25 @@ public class Refresh extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getParameter("refreshLaden")!=null){
-			String farbe=(String)request.getSession().getAttribute("farbe");
-			SpielerLadenWeb.getGameLaden().farbeSession(farbe);
+//			String farbe=(String)request.getSession().getAttribute("farbe");
+			SpielerLadenWeb.getGameLaden().farbeSession(SpielerLadenWeb.getGameLaden().ermittleSpielerAmZugFarbe());
 			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			try{
 				out.println(BrettLaden.getHeader());
 				out.println(BrettLaden.getMenu());
+				out.println(BrettLaden.getTable());
+				out.println(BrettLaden.getMenuEnd());
 			}finally{
 				out.println(BrettLaden.getFooter());
 				out.close();
 			}
 			
 		}else if(request.getParameter("refreshNormal")!=null){
+			
+			
+			
 			String farbe=(String)request.getSession().getAttribute("farbe");
 			Index.getGame().farbeSession(farbe);
 			
@@ -60,6 +65,8 @@ public class Refresh extends HttpServlet {
 			try{
 				out.println(Brett.getHeader());
 				out.println(Brett.getMenu());
+				out.println(Brett.getTable());
+				out.println(Brett.getMenuEnd());
 			}finally{
 				out.println(Brett.getFooter());
 				out.close();

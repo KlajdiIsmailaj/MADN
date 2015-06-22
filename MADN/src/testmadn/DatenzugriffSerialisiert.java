@@ -70,7 +70,8 @@ public class DatenzugriffSerialisiert implements iDatenzugriff,Serializable{
 		  if (ois != null) try { ois.close(); } catch (IOException e) {}
 		  if (fis != null) try { fis.close(); } catch (IOException e) {}
 		}
-		  return obj;
+		
+		return obj;
 	}
 
 }

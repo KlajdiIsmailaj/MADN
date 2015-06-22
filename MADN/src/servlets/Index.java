@@ -16,9 +16,13 @@ import testmadn.iBediener;
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String Login = "/Login.jsp";
-	private static final String Spieler = "/Spieler.jsp";
+//	private static final String Spieler = "/Spieler.jsp";
+	private static final String NextSpieler = "/NextSpieler.jsp";
 	private static final String Error = "/Error.jsp";
-	private String[]sessionId=new String[1];
+	private static final String waitLaden = "/WaitLaden.jsp";
+	
+	
+//	private String[]sessionId=new String[1];
 	ArrayList<String> list = new ArrayList<String>();
 	private static iBediener backend;
 	
@@ -44,29 +48,74 @@ public class Index extends HttpServlet {
 		
 		ServletContext sc = this.getServletContext();
 		RequestDispatcher rd = sc.getRequestDispatcher(Login);
-		RequestDispatcher rd1 = sc.getRequestDispatcher(Spieler);
+//		RequestDispatcher rd1 = sc.getRequestDispatcher(Spieler);
 		RequestDispatcher rd2 = sc.getRequestDispatcher(Error);
+		RequestDispatcher rd3 = sc.getRequestDispatcher(NextSpieler);
+		RequestDispatcher rd4 = sc.getRequestDispatcher(waitLaden);
 		
 		
-		if(sessionId[0]==null){
-			Index.createGame();
-			HttpSession session = request.getSession();
-			sessionId[0]=session.getId();
-			rd.forward(request, response);
-		}
-		
-		else{
+//		if(Index.getGame()!=null){
+		if(SpielerLadenWeb.getGameLaden()!=null){
+			int anzahlDrin=SpielerLadenWeb.getGameLaden().bestandSpielerlist()-1;
 			
-			if(Index.getGame().getAnzahlWeb()==null||Index.getGame().getAnzahlWeb()==1){
-				rd2.forward(request, response);
-			}else if(Index.getGame().getAnzahlWeb()>=list.size()){
-				rd1.forward(request, response);
+			if(anzahlDrin==list.size()){
+				rd4.forward(request, response);
 			}else{
 				rd2.forward(request, response);
 			}
-			
-			
 		}
+		else if(Index.getGame()==null){
+			
+			Index.createGame();
+			rd.forward(request, response);
+			
+		}else if(Index.getGame()!=null){
+			if(Index.getGame().getAnzahlWeb()>Index.getGame().bestandSpielerlist()){
+				rd3.forward(request, response);
+			}else{
+				rd2.forward(request, response);
+			}
+		}
+		
+		
+		
+		
+//		}
+			
+//			if(SpielerLadenWeb.getGameLaden().getAnzahlWeb()>=SpielerLadenWeb.getGameLaden().bestandSpielerlist()){
+//				rd4.forward(request, response);
+//			}else{
+//				rd2.forward(request, response);
+//			}
+		
+		
+//		
+//		else{
+//			if(Index.getGame()!=null){
+//				if(Index.getGame().getAnzahlWeb()>Index.getGame().bestandSpielerlist()){
+//					rd3.forward(request, response);
+//				}else{
+//					rd2.forward(request, response);
+//				}
+//			}else if(SpielerLadenWeb.getGameLaden()!=null){
+//				if(SpielerLadenWeb.getGameLaden().getAnzahlWeb()>SpielerLadenWeb.getGameLaden().bestandSpielerlist()){
+//					rd4.forward(request, response);
+//				}else{
+//					rd2.forward(request, response);
+//				}
+//			}
+//			
+//			
+////			if(Index.getGame().getAnzahlWeb()==null||Index.getGame().getAnzahlWeb()==1){
+////				rd2.forward(request, response);
+////			}else if(Index.getGame().getAnzahlWeb()>=list.size()){
+////				rd1.forward(request, response);
+////			}else{
+////				rd2.forward(request, response);
+////			}
+//			
+//			
+//		}
 	}
 	
 	
