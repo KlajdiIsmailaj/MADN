@@ -58,8 +58,8 @@ public class Spieler extends HttpServlet {
 //		Integer anz=(Integer)request.getSession(false).getAttribute("anzahl");
 		
 		String name = request.getParameter("name");	
-		String farbe = request.getParameter("farbeSpieler");
-		session.setAttribute("farbeSpieler", farbe);
+		String farbe = request.getParameter("farbe");
+		session.setAttribute("farbe", farbe);
 //		String spielerart = request.getParameter("spielerart");
 		
 //		if(Index.getGame().bestandSpielerlist()==0){

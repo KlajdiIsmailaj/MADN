@@ -29,7 +29,6 @@ public class Brett {
 	"<body>" ;
 	}
 	
-	
 	public static  String getMenu(){
 	String s="";
 	
@@ -79,6 +78,10 @@ public class Brett {
 	
 	
 	//------wuerfeln------
+	
+	
+	
+	
 	if((Index.getGame().getWuerfelZahl()==null||Index.getGame().getWuerfelZahl()==6)){
 		s+="<form action='Wuerfeln' method='post'>";
 		if(Index.getGame().ermittleSpielerAmZugFarbe().equals(Index.getGame().gibFarbeSession())&&Index.getGame().ermittleGewinner()==false){
@@ -98,7 +101,7 @@ public class Brett {
 	}
 	
 	
-	
+
 	
 	
 	//--------beenden-----

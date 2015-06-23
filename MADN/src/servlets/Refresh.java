@@ -56,8 +56,24 @@ public class Refresh extends HttpServlet {
 			
 			
 			
-			String farbe=(String)request.getSession().getAttribute("farbeSpieler");
-			Index.getGame().farbeSession(farbe);
+			String farbe=(String)request.getSession().getAttribute("farbe");
+			String farbeNext=(String)request.getSession().getAttribute("farbeNext");
+			
+			System.out.println("next "+farbeNext);
+			System.out.println("now "+farbe);
+			
+			if(Index.getGame().ermittleSpielerAmZugFarbe().equals(farbe)){
+				Index.getGame().farbeSession(farbe);
+			}else{
+				Index.getGame().farbeSession(farbeNext);
+			}
+			
+			
+			if(!farbeNext.equals(farbe)){
+				Brett.press=true;
+			}
+			
+			
 			
 			response.setContentType("text/html");
 			
