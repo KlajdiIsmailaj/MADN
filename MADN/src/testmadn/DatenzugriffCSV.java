@@ -47,16 +47,17 @@ public class DatenzugriffCSV  implements iDatenzugriff,Serializable{
 			  		String name = F[0];
 			  		String farbe = F[1];
 			  		String KI = F[2];
+			  		
 			  		if(KI.equals("null")&&(farbe!="null")&&(name.length()>2)){	
 			    	  this.s.newSpieler(name.substring(8), farbe, KI);
 			  		}
 			       
-			  		else if(KI.equals("agr")&&(farbe!=null)&&(name.length()>2)){
-			  			this.s.newSpieler(name.substring(8), farbe, KI);
+			  		else if(KI.equals("agr")&&(farbe!="null")&&(name.length()>2)){
+			  			this.s.newSpieler(name.substring(8), farbe, this.bestimmeKi(KI));
 			  		}
 			      
-			  		else if(KI.equals("def")&&(farbe!=null)&&(name.length()>2)){
-			  			this.s.newSpieler(name.substring(8), farbe, KI);
+			  		else if(KI.equals("def")&&(farbe!="null")&&(name.length()>2)){
+			  			this.s.newSpieler(name.substring(8), farbe, this.bestimmeKi(KI));
 			  			line= rd.readLine();
 			  		}
 			  	   
@@ -349,7 +350,17 @@ public class DatenzugriffCSV  implements iDatenzugriff,Serializable{
 		return wert;
 	}
 
-
+	public String bestimmeKi(String ki){
+		
+		String a="";
+		if(ki.equals("agr")){
+			a="KI Aggressiv";
+		}else if(ki.equals("def")){
+			a="KI Defensiv";
+		}
+		
+		return a;
+	}
 	
 	@Override
 	public void speichern(String filename,Object o){
@@ -391,43 +402,43 @@ public class DatenzugriffCSV  implements iDatenzugriff,Serializable{
 				}
 				else if(ki instanceof KI_Aggressiv){
 					if(farbe==FarbEnum.BLAU){
-						br.write("spieler :"+s.getSpielerlist().get(i).getName()+ " ;" + "Blau"+";" + "agr");
+						br.write("player :"+s.getSpielerlist().get(i).getName()+ " ;" + "Blau"+";" + "agr");
 						br.newLine();
 					}
 					
 					if(farbe==FarbEnum.ROT){
-						br.write(s.getSpielerlist().get(i).getName()+ " ;" + "Rot"+";" + "agr");
+						br.write("player :"+s.getSpielerlist().get(i).getName()+ " ;" + "Rot"+";" + "agr");
 						br.newLine();
 					}
 					
 					if(farbe==FarbEnum.GRUEN){
-						br.write("spieler :"+s.getSpielerlist().get(i).getName()+ " ;" + "Grün"+";" + "agr");
+						br.write("player :"+s.getSpielerlist().get(i).getName()+ " ;" + "Grün"+";" + "agr");
 						br.newLine();
 					}
 					
 					if(farbe==FarbEnum.GELB){
-						br.write("spieler :"+s.getSpielerlist().get(i).getName()+ " ;" + "Gelb"+";" + "agr");
+						br.write("player :"+s.getSpielerlist().get(i).getName()+ " ;" + "Gelb"+";" + "agr");
 						br.newLine();
 					}
 				}
 				else if(ki instanceof KI_Defensiv){
 					if(farbe==FarbEnum.ROT){
-						br.write("spieler :"+s.getSpielerlist().get(i).getName()+ " ;" +"Rot"+";" + "def");
+						br.write("player :"+s.getSpielerlist().get(i).getName()+ " ;" +"Rot"+";" + "def");
 						br.newLine();
 					}
 					
 					if(farbe==FarbEnum.GELB){
-						br.write("spieler :"+s.getSpielerlist().get(i).getName()+ " ;" + "Gelb"+";" + "def");
+						br.write("player :"+s.getSpielerlist().get(i).getName()+ " ;" + "Gelb"+";" + "def");
 						br.newLine();
 					}
 					
 					if(farbe==FarbEnum.BLAU){
-						br.write("spieler :"+s.getSpielerlist().get(i).getName()+ " ;" + "Blau"+";" + "def");
+						br.write("player :"+s.getSpielerlist().get(i).getName()+ " ;" + "Blau"+";" + "def");
 						br.newLine();
 					}
 					
 					if(farbe==FarbEnum.GRUEN){
-						br.write("spieler :"+s.getSpielerlist().get(i).getName()+ " ;" + "Grün"+";" + "def");
+						br.write("player :"+s.getSpielerlist().get(i).getName()+ " ;" + "Grün"+";" + "def");
 						br.newLine();
 					}
 				}
@@ -557,6 +568,8 @@ public class DatenzugriffCSV  implements iDatenzugriff,Serializable{
 					br.newLine();
 				}
 			}
+			System.out.println("size: "+s.getSpielerlist().size());
+			
 			br.write("unser Spieler am zug heisst :"+s.getSpielerAmZug().getName()+";"+s.getSpielerAmZug().getFarbe()+";"+ s.getSpielerAmZug().getLetzterWurf());
 			System.out.println("SPIEL CSV WURDE ERFOLGREICH GESPEICHERT !!!");
 		}

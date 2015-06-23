@@ -60,7 +60,7 @@ public class WaitLaden extends HttpServlet {
 //		int anzahlDrin=SpielerLadenWeb.getGameLaden().bestandSpielerlist()-1;
 		
 		
-		if(list.size()==SpielerLadenWeb.getGameLaden().bestandSpielerlist()){
+		if(list.size()==SpielerLadenWeb.getGameLaden().gibAnzahlMensch()){
 			
 			
 			response.setContentType("text/html");

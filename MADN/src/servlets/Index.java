@@ -48,15 +48,16 @@ public class Index extends HttpServlet {
 		
 		ServletContext sc = this.getServletContext();
 		RequestDispatcher rd = sc.getRequestDispatcher(Login);
-//		RequestDispatcher rd1 = sc.getRequestDispatcher(Spieler);
 		RequestDispatcher rd2 = sc.getRequestDispatcher(Error);
 		RequestDispatcher rd3 = sc.getRequestDispatcher(NextSpieler);
 		RequestDispatcher rd4 = sc.getRequestDispatcher(waitLaden);
 		
+//		System.out.println(list.size());
 		
-//		if(Index.getGame()!=null){
 		if(SpielerLadenWeb.getGameLaden()!=null){
-			int anzahlDrin=SpielerLadenWeb.getGameLaden().bestandSpielerlist()-1;
+			
+//			System.out.println(SpielerLadenWeb.getGameLaden().gibAnzahlMensch());
+			int anzahlDrin=SpielerLadenWeb.getGameLaden().gibAnzahlMensch()-1;
 			
 			if(anzahlDrin==list.size()){
 				rd4.forward(request, response);
@@ -76,46 +77,6 @@ public class Index extends HttpServlet {
 				rd2.forward(request, response);
 			}
 		}
-		
-		
-		
-		
-//		}
-			
-//			if(SpielerLadenWeb.getGameLaden().getAnzahlWeb()>=SpielerLadenWeb.getGameLaden().bestandSpielerlist()){
-//				rd4.forward(request, response);
-//			}else{
-//				rd2.forward(request, response);
-//			}
-		
-		
-//		
-//		else{
-//			if(Index.getGame()!=null){
-//				if(Index.getGame().getAnzahlWeb()>Index.getGame().bestandSpielerlist()){
-//					rd3.forward(request, response);
-//				}else{
-//					rd2.forward(request, response);
-//				}
-//			}else if(SpielerLadenWeb.getGameLaden()!=null){
-//				if(SpielerLadenWeb.getGameLaden().getAnzahlWeb()>SpielerLadenWeb.getGameLaden().bestandSpielerlist()){
-//					rd4.forward(request, response);
-//				}else{
-//					rd2.forward(request, response);
-//				}
-//			}
-//			
-//			
-////			if(Index.getGame().getAnzahlWeb()==null||Index.getGame().getAnzahlWeb()==1){
-////				rd2.forward(request, response);
-////			}else if(Index.getGame().getAnzahlWeb()>=list.size()){
-////				rd1.forward(request, response);
-////			}else{
-////				rd2.forward(request, response);
-////			}
-//			
-//			
-//		}
 	}
 	
 	

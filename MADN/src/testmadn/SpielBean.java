@@ -37,7 +37,18 @@ public class SpielBean implements iBediener, Serializable {
 	private String[]figurWebId2=null;
 	public static ByteArrayOutputStream baos = new ByteArrayOutputStream();
 	
-	
+	@Override
+	public int gibAnzahlMensch(){
+		int i=0;
+		
+		for(Spieler s:this.spielerlist){
+			if(s.getKi()==null){
+				i++;
+			}
+		}
+		
+		return i;
+	}
 	
 	public int getSpielerAnzahl() {
 		return spielerAnzahl;
@@ -49,6 +60,10 @@ public class SpielBean implements iBediener, Serializable {
 	
 	@Override
 	public void laufKi(){
+		
+//		System.out.println("lauf");
+//		System.out.println(spielerAmZug.getName());
+//		System.out.println(this.spielerlist.size());
 		while(spielerAmZug.getKi()!=null){
 			if(spielerAmZug.getKi()!=null){
 				if(this.ermittleGewinner()==true){

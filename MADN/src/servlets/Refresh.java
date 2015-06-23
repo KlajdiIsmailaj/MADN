@@ -37,9 +37,24 @@ public class Refresh extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getParameter("refreshLaden")!=null){
-//			String farbe=(String)request.getSession().getAttribute("farbe");
+			
 			SpielerLadenWeb.getGameLaden().farbeSession(SpielerLadenWeb.getGameLaden().ermittleSpielerAmZugFarbe());
 			
+			
+//			String farbe=(String)request.getSession().getAttribute("farbeSpieler");
+//			String farbeNext=(String)request.getSession().getAttribute("farbeNext");
+//			
+//			
+//			if(SpielerLadenWeb.getGameLaden().ermittleSpielerAmZugFarbe().equals(farbe)){
+//				SpielerLadenWeb.getGameLaden().farbeSession(farbe);
+//			}else{
+//				SpielerLadenWeb.getGameLaden().farbeSession(farbeNext);
+//			}
+			
+//			if(farbeNext==null){
+//				BrettLaden.press=true;
+//			}
+//			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			try{
@@ -54,13 +69,9 @@ public class Refresh extends HttpServlet {
 			
 		}else if(request.getParameter("refreshNormal")!=null){
 			
-			
-			
-			String farbe=(String)request.getSession().getAttribute("farbe");
+			String farbe=(String)request.getSession().getAttribute("farbeSpieler");
 			String farbeNext=(String)request.getSession().getAttribute("farbeNext");
 			
-			System.out.println("next "+farbeNext);
-			System.out.println("now "+farbe);
 			
 			if(Index.getGame().ermittleSpielerAmZugFarbe().equals(farbe)){
 				Index.getGame().farbeSession(farbe);
@@ -68,15 +79,12 @@ public class Refresh extends HttpServlet {
 				Index.getGame().farbeSession(farbeNext);
 			}
 			
-			
-			if(!farbeNext.equals(farbe)){
+			if(farbeNext==null){
 				Brett.press=true;
 			}
 			
 			
-			
 			response.setContentType("text/html");
-			
 			PrintWriter out = response.getWriter();
 			try{
 				out.println(Brett.getHeader());

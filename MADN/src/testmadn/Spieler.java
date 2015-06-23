@@ -127,9 +127,9 @@ public class Spieler implements Serializable {
 	 * @param name ist der Name des Spielers
 	 */
 	public void setName(String name) {
-		if((name==null) || (name.length()<2)){
-			throw new RuntimeException("Name muss mindestens 2 Zeichen enthalten!");
-		}
+//		if((name==null) || (name.length()<2)){
+//			throw new RuntimeException("Name muss mindestens 2 Zeichen enthalten!");
+//		}
 		this.name = name;
 	}
 

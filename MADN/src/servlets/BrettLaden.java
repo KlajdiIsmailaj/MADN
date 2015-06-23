@@ -40,6 +40,7 @@ public class BrettLaden {
 	"</body>"+
 	"</html>";
 	}
+	
 	public static  String getMenu(){
 	
 	String s="";
@@ -60,23 +61,23 @@ public class BrettLaden {
 	s+="</center>";
 
 	//-----Wuerfel---------
-		s+="<div id='dice'>";
-		if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==null){
-			s+="<img src='Bilder/dice0.png'>";
-		}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==6){
-			s+="<img src='Bilder/dice6.png'>";
-		}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==5){
-			s+="<img src='Bilder/dice5.png'>";
-		}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==4){
-			s+="<img src='Bilder/dice4.png'>";
-		}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==3){
-			s+="<img src='Bilder/dice3.png'>";
-		}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==2){
-			s+="<img src='Bilder/dice2.png'>";
-		}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==1){
-			s+="<img src='Bilder/dice1.png'>";
-		}
-		s+="</div>";
+	s+="<div id='dice'>";
+	if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==null){
+		s+="<img src='Bilder/dice0.png'>";
+	}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==6){
+		s+="<img src='Bilder/dice6.png'>";
+	}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==5){
+		s+="<img src='Bilder/dice5.png'>";
+	}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==4){
+		s+="<img src='Bilder/dice4.png'>";
+	}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==3){
+		s+="<img src='Bilder/dice3.png'>";
+	}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==2){
+		s+="<img src='Bilder/dice2.png'>";
+	}else if(SpielerLadenWeb.getGameLaden().getWuerfelZahl()==1){
+		s+="<img src='Bilder/dice1.png'>";
+	}
+	s+="</div>";
 
 	s+="<div id='steuerung'>";
 	s+="<font color='white' face='Trebuchet MS'>Steuerung</font>";
@@ -205,7 +206,7 @@ public class BrettLaden {
 	}
 	
 	
-public static ArrayList<String> ausgabe(){
+	public static ArrayList<String> ausgabe(){
 		
 		ArrayList<String>au=new ArrayList<String>();
 		x=SpielBean.baos.toString().split("\n");

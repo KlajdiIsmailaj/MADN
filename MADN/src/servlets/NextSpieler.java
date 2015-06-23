@@ -46,7 +46,7 @@ public class NextSpieler extends HttpServlet {
 		ServletContext sc = this.getServletContext();
 		RequestDispatcher rd2 = sc.getRequestDispatcher(wait);
 		
-		String name = request.getParameter("name");	
+		String name = request.getParameter("nameNext");	
 		String farbe = request.getParameter("farbeNext");
 		session.setAttribute("farbeNext", farbe);
 		

@@ -24,7 +24,7 @@ Integer anz=(Integer)request.getSession(false).getAttribute("anzahl");
 String typ1=(String) request.getSession(false).getAttribute("typ1");
 String typ2=(String) request.getSession(false).getAttribute("typ2");
 String typ3=(String) request.getSession(false).getAttribute("typ3");
-String farbeSpieler=(String) request.getSession(false).getAttribute("farbe");
+String farbeSpieler=(String) request.getSession(false).getAttribute("farbeSpieler");
 
 
 if(anz==2){

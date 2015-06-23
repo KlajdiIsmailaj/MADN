@@ -30,7 +30,7 @@ function validateForm() {
    <div id="form">
    
   <label id="labels1">Bitte gib deinen Namen ein:</label> 
-  <input id="name" name="name" type="text">
+  <input id="name" name="nameNext" type="text">
   
    <br>
    <br>

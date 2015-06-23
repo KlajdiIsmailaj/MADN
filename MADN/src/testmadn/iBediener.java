@@ -50,6 +50,7 @@ public interface iBediener {
 	String gibFarbeSession();
 	void laufKi();
 	boolean menschDrin();
+	int gibAnzahlMensch();
 	
 	
 }
