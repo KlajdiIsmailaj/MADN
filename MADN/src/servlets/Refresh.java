@@ -56,7 +56,7 @@ public class Refresh extends HttpServlet {
 			
 			
 			
-			String farbe=(String)request.getSession().getAttribute("farbe");
+			String farbe=(String)request.getSession().getAttribute("farbeSpieler");
 			Index.getGame().farbeSession(farbe);
 			
 			response.setContentType("text/html");
